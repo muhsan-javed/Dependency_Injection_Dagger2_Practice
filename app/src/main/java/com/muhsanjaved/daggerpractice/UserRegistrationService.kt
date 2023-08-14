@@ -1,12 +1,12 @@
 package com.muhsanjaved.daggerpractice
 
-class UserRegistrationService {
-
-    private val userRepository = UserRepository()
-    private val emailService = EmailService()
+class UserRegistrationService(
+    private val userRepository: UserRepository,
+    private val emailService: EmailService
+) {
 
     fun registerUser(email: String, password:String){
-        userRepository.saveUser(email)
+        userRepository.saveUser(email,password)
         emailService.send(email, "no-reply@muhsantech.com","User Registered")
     }
 }
